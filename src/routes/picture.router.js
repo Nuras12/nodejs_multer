@@ -15,9 +15,6 @@ const storageConfig = multer.diskStorage({
     }
 });
 
-const upload = multer({ storage: storageConfig });
-
-
 const router = express.Router();
 
 
@@ -50,7 +47,7 @@ router.get('/:id', async function (req, res) {
     }
 });
 
-router.post('/', upload.any(), async function (req, res) {
+router.post('/', multer({ storage: storageConfig }).any(), async function (req, res) {
     try {
         for (const pic of req.files){
             const user = await dao.User.findOne(req.username);
