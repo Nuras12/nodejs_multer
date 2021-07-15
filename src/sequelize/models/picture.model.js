@@ -1,20 +1,20 @@
-const { DataTypes } = require('sequelize');
+import Sequelize from 'sequelize';
 
-module.exports = (sequelize) => {
+export const Picture = (sequelize) => {
 	sequelize.define('picture', {
 		id: {
 			allowNull: false,
 			autoIncrement: true,
 			primaryKey: true,
-			type: DataTypes.INTEGER
+			type: Sequelize.DataTypes.INTEGER
 		},
 		path: {
 			allowNull: false,
-			type: DataTypes.STRING
+			type: Sequelize.DataTypes.STRING
 		},
 		filename: {
 			allowNull: false,
-			type: DataTypes.STRING	
+			type: Sequelize.DataTypes.STRING	
 		}
 	}, {
 		tableName: 'pictures'

@@ -1,4 +1,4 @@
-const jwt = require('jsonwebtoken');
+import jwt from "jsonwebtoken"
 
 const secret = 'secret_uHNn2kTDpB';
 
@@ -23,4 +23,4 @@ const withAuth = function (req, res, next) {
     }
 }
 
-module.exports = withAuth;
+export { withAuth };

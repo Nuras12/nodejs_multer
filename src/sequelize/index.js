@@ -1,6 +1,8 @@
-const dotenv = require("dotenv");
-const { Sequelize } = require('sequelize');
-const { applyExtraSetup } = require('./extra-setup');
+import dotenv from 'dotenv';
+import Sequelize from 'sequelize';
+import { applyExtraSetup } from './extra-setup.js';
+import { User } from './models/user.model.js';
+import { Picture } from './models/picture.model.js';
 
 dotenv.config();
 
@@ -16,10 +18,7 @@ const url = `postgres://${PG_USERNAME}:${PG_PASSWORD}@${PG_HOST}:${PG_PORT}/${PG
 const sequelize = new Sequelize(url);
 
 
-const modelDefiners = [
-	require('./models/user.model'),
-	require('./models/picture.model'),
-];
+const modelDefiners = [ User, Picture ];
 
 for (const modelDefiner of modelDefiners) {
 	modelDefiner(sequelize);
@@ -48,4 +47,4 @@ DAO.Picture = {
     }) 
 }
 
-module.exports = DAO;
+export default DAO;

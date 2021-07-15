@@ -1,24 +1,24 @@
-const { DataTypes } = require('sequelize');
-const bcrypt = require("bcrypt");
+import Sequelize from 'sequelize';
+import bcrypt from 'bcrypt';
 
-module.exports = function(sequelize) {
+export const User = function(sequelize) {
 
 	const User = sequelize.define('user', {
 		id: {
 			allowNull: false,
 			autoIncrement: true,
 			primaryKey: true,
-			type: DataTypes.INTEGER
+			type: Sequelize.DataTypes.INTEGER
 		},
 		username: {
 			allowNull: false,
-			type: DataTypes.STRING,
+			type: Sequelize.DataTypes.STRING,
 			unique: true,
 			validate: {
 				is: /^\w{3,}$/
 			}
 		},
-		password: DataTypes.STRING }, {
+		password: Sequelize.DataTypes.STRING }, {
 			tableName: 'users',
 			freezeTableName: true,
 			hooks: {

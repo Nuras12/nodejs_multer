@@ -1,4 +1,4 @@
-module.exports = (req, file, cb) => {
+export default function (req, file, cb) {
   
     if(file.mimetype === "image/png" || 
     file.mimetype === "image/jpg"|| 

@@ -1,14 +1,14 @@
-const express = require('express');
-const path = require('path');
-const fs = require('fs')
+import express from 'express';
+import path from 'path';
+import * as fs from 'fs';
+import multer from 'multer';
 
-const dao = require('../sequelize/index');
-const multer  = require('multer')
+import dao from '../sequelize/index.js';
 
 
 const storageConfig = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, path.join(__dirname, "../", '/uploads'));
+        cb(null, path.join(path.resolve(), 'src/uploads'));
     },
     filename: (req, file, cb) =>{
         cb(null, (new Date()).toISOString() + '_' + file.originalname)
@@ -52,7 +52,7 @@ router.get('/:id', async function (req, res) {
 
 router.post('/', upload.any(), async function (req, res) {
     try {
-        for (pic of req.files){
+        for (const pic of req.files){
             const user = await dao.User.findOne(req.username);
             await dao.Picture.create(user.id, pic.originalname, pic.path);
         }
@@ -65,4 +65,4 @@ router.post('/', upload.any(), async function (req, res) {
 });
 
 
-module.exports = router;
+export default router;

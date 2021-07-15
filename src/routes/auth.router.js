@@ -1,7 +1,7 @@
-const express = require('express');
-const jwt = require('jsonwebtoken');
-const dao = require('../sequelize/index');
-const withAuth = require('../middleware/auth');
+import express from 'express';
+import jwt from "jsonwebtoken"
+import dao from '../sequelize/index.js';
+import { withAuth } from '../middleware/auth.js';
 
 const secret = 'secret_uHNn2kTDpB';
 
@@ -47,4 +47,4 @@ router.get('/checkToken', withAuth, function (req, res) {
 });
 
 
-module.exports = router;
+export default router;

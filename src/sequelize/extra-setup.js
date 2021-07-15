@@ -5,4 +5,4 @@ function applyExtraSetup(sequelize) {
 	picture.belongsTo(user);
 }
 
-module.exports = { applyExtraSetup };
+export { applyExtraSetup };

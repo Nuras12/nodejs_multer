@@ -1,9 +1,11 @@
-const express = require('express');
-const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
+import express from 'express';
+import cookieParser from 'cookie-parser';
+import bodyParser from 'body-parser';
 
-const dao = require('./sequelize');
-const withAuth = require('./middleware/auth');
+import dao from './sequelize/index.js';
+import { withAuth } from './middleware/auth.js';
+import authRouter from './routes/auth.router.js';
+import pictureRouter from './routes/picture.router.js';
 
 async function assertDatabaseConnectionOk() {
 	console.log(`Checking database connection...`);
@@ -26,8 +28,8 @@ async function init() {
     app.use(bodyParser.urlencoded({ extended: false }));
     app.use(bodyParser.json());
     
-    app.use('/auth', require('./routes/auth.router.js'));    
-    app.use('/pictures', withAuth, require('./routes/picture.router.js'));    
+    app.use('/auth', authRouter);    
+    app.use('/pictures', withAuth, pictureRouter);    
 
 	app.listen(8080, () => {
 		console.log(`Express server started on port. Try some routes, such as '/api/pictures'.`);
