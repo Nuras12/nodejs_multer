@@ -1,0 +1,31 @@
+version: '3.3'
+
+services:
+
+  postgres:
+    image: postgres:latest
+    container_name: pg
+    restart: always
+    ports:
+      - "5432:5432"
+    environment: 
+      - POSTGRES_PASSWORD=mysecretpassword
+      - POSTGRES_DB=test-db
+
+  app:
+    build:
+      context: .
+    restart: always
+    command: npm run start
+    environment: 
+      - PG_USERNAME=postgres
+      - PG_PASSWORD=mysecretpassword
+      - PG_HOST=pg
+      - PG_PORT=5432
+      - PG_DB_NAME=test-db
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    
+
