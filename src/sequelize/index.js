@@ -1,3 +1,4 @@
+const dotenv = require("dotenv");
 const { Sequelize } = require('sequelize');
 const { applyExtraSetup } = require('./extra-setup');
 
