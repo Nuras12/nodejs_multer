@@ -1,7 +1,7 @@
 const { Sequelize } = require('sequelize');
 const { applyExtraSetup } = require('./extra-setup');
 
-/*dotenv.config();
+dotenv.config();
 
 const {
     PG_USERNAME,
@@ -10,12 +10,7 @@ const {
     PG_PORT,
     PG_DB_NAME
 } = process.env;
-*/
-const PG_USERNAME = "postgres";
-const PG_PASSWORD = "mysecretpassword";
-const PG_HOST = "localhost";
-const PG_PORT = "5432";
-const PG_DB_NAME = "db";
+
 const url = `postgres://${PG_USERNAME}:${PG_PASSWORD}@${PG_HOST}:${PG_PORT}/${PG_DB_NAME}`;
 const sequelize = new Sequelize(url);
 
